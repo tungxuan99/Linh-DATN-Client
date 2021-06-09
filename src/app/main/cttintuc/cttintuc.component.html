@@ -1,0 +1,83 @@
+
+  <section class="breadcrumb_area">
+    <div class="breadcrumb_top">
+        <div class="container">
+            <div class="row">
+                <div class="breadcrumb_title section-padding">
+                    <h2>Chi Tiết</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="breadcrumb_bottom">
+        <div class="container">
+            <div class="row">
+                <div class="breadcrumb_nav">
+                    <div class="col-sm-5">
+                        <h2>Chi Tiết</h2>
+                    </div>
+                    <div class="col-sm-7">
+                        <ul>
+                            <li><a [routerLink]="['/tin-tuc']">Tin Tức</a></li>
+                            <li>Chi Tiết</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="single_post_area section-padding">
+  <div class="container">
+      <div class="row">
+     
+          <div class="col-md-8">
+              <div class="single_blog_post_box">
+                  <div class="blog_post_photo">
+                      <img src="assets/img/{{item.hinhAnh}}" alt="">
+                  </div>
+                  <div class="blog_post_txt">
+                      <div class="blog_post_heading">
+                          <h2><a href="">{{item.tieuDe}}</a></h2>
+                          <p>Posted By : Admin</p><br>
+                          <p>{{item.thoiGian| date:'dd-MM-yyyy' }}</p>
+                      </div>
+                      <div class="blog_post_content">
+                        <p>{{item.noiDung}}</p>
+                      </div>
+                      <div class="blog_post_footer">
+                          <ul>
+                              <li></li>
+                              <li></li>
+                              <li></li>
+                              <li class="blog_post_footer_right_item"></li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>       
+          <div class="col-md-4 col-sm-7">
+              <aside>
+                  <div class="right_sidebar">
+                      <div class="all_right_widgets">
+                          <div class="sing_right_widget">
+                              <h2>Tin tức mới</h2>
+                              <div class="sing_right_widg_content">
+                                  <ul class="lat_news_right" >
+                                      <li *ngFor="let it of tintucs">
+                                          <img width="59px" height="59px" src="assets/img/{{it.hinhAnh}}" alt="">
+                                          <div class="lat_news_right_con">
+                                              <h3><a [routerLink]="['/ct-tintuc',it.maTin]">{{catText(it.tieuDe, 40)}}</a></h3>
+                                          </div>
+                                      </li>                                   
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </aside>
+          </div>
+      </div>
+  </div>
+</section>
+

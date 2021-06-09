@@ -1,0 +1,63 @@
+
+
+        <section class="breadcrumb_area">
+            <div class="breadcrumb_top">
+                <div class="container">
+                    <div class="row">
+                        <div class="breadcrumb_title section-padding">
+                            <h2>Thời Khóa Biểu</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="breadcrumb_bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="breadcrumb_nav">
+                            <div class="col-sm-5">
+                                <h2>Thời Khóa Biểu</h2>
+                            </div>
+                            <div class="col-sm-7">
+                                <ul>
+                                    <li><a [routerLink]="['/']">Trang Chủ</a></li>
+                                    <li>Thời Khóa Biểu</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container">
+            <br>
+            <h2 style="text-align: center;">DANH SÁCH LỚP HỌC</h2>
+            <p>Thời khóa biểu chính khóa buổi sáng và buổi chiều cho các lớp</p>  
+            <p>- Buổi sáng: Tiết 1 từ 7h15' <br>
+                - Buổi chiều: Tiết 1 từ 13h00' </p> 
+             
+            <table class="cls-tblTKB text-center" border="1" cellspacing="1" width="660" bordercolor="#000000" >
+                <tbody >
+                    <tr>
+                        <td width="330" colspan="3" >Buổi sáng</td>
+                    </tr>
+                    <tr>
+                        <td width="30"  ><font face="Times New Roman" size="3">STT</font></td>
+                        <td width="100"  ><font face="Times New Roman" size="3">Tên lớp</font></td>
+                        <td width="100"  ><font face="Times New Roman" size="3">Số học sinh</font></td>
+                    </tr>
+                    <ng-container *ngFor="let it of list_lop, let i = index">
+                    <tr>
+                        <td width="30"><font face="Times New Roman" size="3">{{i+1}}</font></td>
+                        <td width="100"><font face="Tahoma" size="2"><a [routerLink]="['/ct-tkb',it.maLop]">{{it.tenLop}}</a></font></td>
+                        <td width="100" ><font face="Times New Roman" size="3">{{it.siSo}}</font></td>
+                    </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+   
+            <br>
+            <br>
+            <br>
+            <br>
+          </div>
+          
