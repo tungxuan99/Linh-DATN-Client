@@ -1,0 +1,100 @@
+<!-- <section class="breadcrumb_area">
+      <div class="breadcrumb_top">
+          <div class="container">
+              <div class="row">
+                  <div class="breadcrumb_title section-padding">
+                      <h2>Diễn Đàn</h2>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="breadcrumb_bottom">
+          <div class="container">
+              <div class="row">
+                  <div class="breadcrumb_nav">
+                      <div class="col-sm-3">
+                          <h2>Bài Viết Mới</h2>
+                      </div>
+                      <div class="col-sm-7">
+                          <ul>
+                              <li><a [routerLink]="['/']">Trang Chủ</a></li>
+                              <li><a>Bài Viết Mới</a></li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <section class="latest_news_area section-padding">
+      <div class="container">
+          <div class="row">
+            <ng-container *ngFor="let it of list_blog">
+              <div class="col-md-12" style="padding: 6px !important;">
+                  <div class="single_blog_post_box">
+                      <div class="blog_post_photo">
+                          <img src="assets/img/{{it.hinhAnh}}" style="height: 600px; width: 800px;">
+                          <div class="blog_post_date_caption">
+                              <span>{{it.thoiGian | date:'dd-MM-yyyy' }} </span>
+                          </div>
+                      </div>
+                      <div class="blog_post_txt">
+                          <div class="blog_post_heading">
+                              <h2><a [routerLink]="['/ctblog',it.maBaiViet]">{{catText(it.tieuDe)}}</a></h2>
+                              <p>{{catText(it.maTK)}}</p>
+                          </div>
+                          <div class="blog_post_content">
+                              <p>{{catText(it.noiDung)}} </p>
+                              <ul>
+                                  <li><i class="pe-7s-comment"></i>{{it.soBL}}</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </ng-container>
+        </div>
+    </div>
+  </section>
+  <div class="row">
+    <div class="col-xs-12" style="text-align: center;">
+      <ngb-pagination [collectionSize]="totalRecords" [pageSize]="pageSize" [(page)]="page" [maxSize]="10" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+    </div>
+</div> -->
+
+
+<section>
+    <div class="container tin-chinh blog" style="background-color: #fff;">
+       <div class="col-sm-12 col-xs-12 tieu-de-blog">
+          <h2><a [routerLink]="['/']"> >Trang chủ</a> / Diễn đàn</h2>
+       </div>
+       <div class="col-sm-9 col-xs-12" style="padding:0">
+          <ng-container *ngFor="let it of list_blog">
+             <div class="col-sm-12 col-xs-12 -in-tt">
+                <div class="col-sm-4" style="padding:0">
+                   <a [routerLink]="['/ct-tintuc',it.maTin]" title="{{catText(it.tieuDe)}}" style="width: 277.48px; height: 208.11px;"><img src="assets/img/{{it.hinhAnh}}" style="width: 100%;"></a>
+                </div>
+                <div class="col-sm-8">
+                   <div class="col-sm-12" style="padding:0">
+                      <h3 class="max-lines2"><a [routerLink]="['/ctblog',it.maBaiViet]">{{catText(it.tieuDe, 100)}}</a></h3>
+                   </div>
+                   <div class="col-sm-12 admin" style="padding:0">
+                      <p class="info">
+                         <i class="glyphicon glyphicon-time"></i>&ensp;{{ it.thoiGian| date:'dd-MM-yyyy'  }} &nbsp;&nbsp;&nbsp;&nbsp; <i class="glyphicon glyphicon-comment"></i>&ensp;{{it.soBL}}
+                      </p>
+                   </div>
+                    <div class="col-sm-12">
+                        <p>{{catText(it.noiDung, 100)}}</p>
+                    </div>
+                   <a [routerLink]="['/ctblog',it.maBaiViet]" class="btn btn-info">Chi tiết  &#187;</a>
+                </div>
+             </div>
+          </ng-container>
+       </div>
+       <app-newfet></app-newfet>
+       <div class="col-sm-12 col-xs-12 text-center" style="padding:0;margin-top:5%">
+          <ngb-pagination [collectionSize]="totalRecords" [pageSize]="pageSize" [(page)]="page" [maxSize]="10" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+       </div>
+    </div>
+</section>
+

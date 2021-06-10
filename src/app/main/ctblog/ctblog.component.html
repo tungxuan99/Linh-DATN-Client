@@ -1,0 +1,247 @@
+<!-- 
+
+  <section class="breadcrumb_area">
+      <div class="breadcrumb_top">
+          <div class="container">
+              <div class="row">
+                  <div class="breadcrumb_title section-padding">
+                      <h2>DIỄN ĐÀN</h2>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="breadcrumb_bottom">
+          <div class="container">
+              <div class="row">
+                  <div class="breadcrumb_nav">
+                      <div class="col-sm-3">
+                          <h2>Bài Viết</h2>
+                      </div>
+                      <div class="col-sm-7">
+                          <ul>
+                              <li><a href="/">Trang Chủ</a></li>
+                              <li><a [routerLink]="['/blog']" >Bài Viết</a></li>
+                          </ul>
+                      </div>
+                      <div class="col-sm-2" >
+                          <ng-container *ngIf="user">
+                            <h2><a style="color: white;float: right;" (click)="logout()" >Đăng xuất</a></h2>
+                          </ng-container>       
+                          <ng-container *ngIf="!user">
+                           <h2><a style="color: white;float: right;" (click)="createModal()" >Đăng Nhập</a></h2>
+                          </ng-container>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="single_post_area section-padding">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-8">
+                  <div class="single_blog_post_box">
+                      <div class="blog_post_photo">
+                          <img src="assets/img/{{item.hinhAnh}}" alt="">
+                          <div class="blog_post_date_caption">
+                              <span>{{item.thoiGian| date:'dd-MM-yyyy'}}</span>
+                          </div>
+                      </div>
+                      <div class="blog_post_txt">
+                          <div class="blog_post_heading">
+                              <h2><a href="single-post.html">{{item.tieuDe}}</a></h2>
+                              <p>{{item.maTK}}</p>
+                          </div>
+                          <div class="blog_post_content">
+                              <p>{{item.noiDung}}</p>
+                          </div>
+                          <div class="blog_post_footer">
+                              <ul>
+                                  <li><i class="pe-7s-comment"></i>11 Comments</li>
+                                  <li class="blog_post_footer_right_item"><i class="pe-7s-ticket"></i>Trường THPT Khoái Châu</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="single_post_comment_area">
+                      <h2>Bình Luận</h2>
+                      <ng-container *ngFor="let bl of binhluans">
+                          <ng-container *ngIf="bl.trangThai=='duyệt'">
+                      <ul class="coments">
+                          <li>              
+                              <div class="col-md-2 fix_p">
+                                  <div class="com_author_photo">
+                                      <img src="assets/img/avatar.gif" style="height: 50px;width: 60px;">
+                                  </div>
+                              </div>
+                              <div class="col-md-10">
+                                  <div class="comment_details">
+                                      <h3>{{bl.hoTen}}</h3>
+                                    <p>{{bl.noiDung}}</p>
+                                    <h4>{{bl.thoiGian| date:'dd-MM-yyyy' }}</h4>
+                                      <a href="#" class="reply">Trả lời</a>
+                                  </div>
+                              </div>
+                          </li>
+                      </ul>
+                    </ng-container>
+                    </ng-container>
+                      <div class="comment_form">
+                        <h2>BÌNH LUẬN </h2>
+                        <form [formGroup]="formbinhluan" (ngSubmit)="ThemBinhLuan()" class="form-horizontal">
+                            <div class="row">
+                                <div class="col-md-12 fix_p_r">
+                                    <textarea formControlName="binhluan" cols="30" rows="10" placeholder="Message"></textarea>
+                                    <button class="btn btn-success">Gửi bình luận</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-md-4 col-sm-7">
+                  <aside>
+                      <div class="right_sidebar">
+                          <div class="all_right_widgets">
+                              <div class="sing_right_widget">
+                                  <h2>Bài Viết</h2>
+                                  <div class="sing_right_widg_content">
+                                      <ul class="lat_news_right" *ngFor="let it of list_blog">
+                                          <li>
+                                              <img src="assets/img/{{it.hinhAnh}}" alt="">
+                                              <div class="lat_news_right_con">
+                                                  <h3><a [routerLink]="['/ctblog',it.maBaiViet]">{{catText(it.tieuDe)}}</a></h3>
+                                                  <h4></h4>
+                                              </div>
+                                          </li>
+                                      </ul>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </aside>
+              </div>            
+          </div>
+      </div>
+  </section>
+  <div  id="createUserModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg full-height-modal">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h4 class="modal-title">Đăng nhập</h4>
+          </div>
+          <form [formGroup]="formdata"  (ngSubmit)="onSubmit(formdata.value)" class="form-horizontal">
+              <div class="card mt-2">
+                  <div class="card-body">
+                    <div class="row form-group">
+                        <label class="control-label col-sm-2">Tên tài khoản</label>
+                        <div class="col-sm-8">
+                            <input type="text" formControlName="username" placeholder="Tên tài khoản" class="form-control">
+                        </div>
+                    </div>
+                    <div *ngIf="f.username.errors" class="row invalid-feedback">
+                        <div class="col-sm-2"></div>
+                        <div *ngIf="f.username.errors.required" class="col-sm-8">Chưa nhập tài khoản!</div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="control-label col-sm-2">Password</label>
+                        <div class="col-sm-8">
+                            <input type="password" formControlName="password" placeholder="Mật khẩu" class="form-control">
+                        </div>
+                    </div>
+                    <div *ngIf="f.password.errors" class="row invalid-feedback">
+                        <div class="col-sm-2"></div>
+                        <div *ngIf="f.password.errors.required" class="col-sm-8">Chưa nhập mật khẩu!</div>
+                    </div>
+                    <div class="row checkbox">
+                        <label class="col-sm-4 control-label">
+                        <input type="checkbox"> Nhớ Password!
+                        </label>
+                        <label class="col-sm-6 control-label">
+                            <a href="#">Quên Password?</a>
+                        </label>
+                    </div>
+                    <div class="row form-group">
+                        <div class="clearfix">
+                            <div class="col-sm-6" style="margin-left: 16%;">
+                                <button type="submit" class="btn btn-success">Đăng Nhập</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="register-link m-t-15 text-center" >
+                            <p style="color: black;">Bạn quên tài khoản ? <a [routerLink]="['/dangky']"> Đăng ký tại đây</a></p>
+                    </div>
+                </div>
+            </div>
+          </form>
+       </div>
+    </div>
+ </div> -->
+
+ <section>
+    <div class="container tin-chinh blog" style="background-color: #fff;">
+       <div class="col-sm-12 col-xs-12 tieu-de-blog">
+          <h2 style="margin-bottom: 0"><a [routerLink]="['/']">Trang chủ</a> / 
+             <a [routerLink]="['/blog']"> Diễn đàn</a> /
+             {{item.tieuDe}}
+          </h2>
+       </div>
+       <div class="col-sm-12 col-xs-12" style="padding:0">
+          <div class="col-sm-9 col-xs-12 bai-viet" style="border-right: 1px solid #eee">
+             <h2 style="margin-top: 0">{{item.tieuDe}}</h2>
+             <p>Posted By :{{item.maTK}}</p>
+            <p>Ngày đăng: {{item.thoiGian| date:'dd-MM-yyyy' }}</p>
+             <hr>
+             <div class="content">
+                <p>{{item.noiDung}}</p>
+             </div>
+             <div class="featured-images text-center">
+                <p>
+                    <img src="assets/img/{{item.hinhAnh}}" alt="{{item.tieuDe}}">
+                </p>
+             </div>
+             <div class="col-sm-12 col-xs-12">
+                <h2>Bình Luận</h2>
+                <ng-container *ngFor="let bl of binhluans">
+                    <ng-container *ngIf="bl.trangThai=='duyệt'">
+                <ul class="coments">
+                    <li>              
+                        <div class="col-md-2 fix_p">
+                            <div class="com_author_photo">
+                                <img src="assets/img/avatar.gif" style="height: 50px;width: 60px;">
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="comment_details">
+                                <h3>{{bl.hoTen}}</h3>
+                              <p>{{bl.noiDung}}</p>
+                              <h4>{{bl.thoiGian| date:'dd-MM-yyyy' }}</h4>
+                                <a href="#" class="reply">Trả lời</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+              </ng-container>
+              </ng-container>
+                <div class="form-group">
+                  <h2>BÌNH LUẬN </h2>
+                  <form [formGroup]="formbinhluan" (ngSubmit)="ThemBinhLuan()" class="form-horizontal">
+                      <div class="row">
+                          <div class="col-md-12">
+                              <textarea formControlName="binhluan" cols="30" rows="10" placeholder="Message"></textarea>
+                              <button class="btn btn-success">Gửi bình luận</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+            </div>
+          </div>
+          <app-newfet></app-newfet>
+        </div>  
+    </div>
+</section>
+
+
+

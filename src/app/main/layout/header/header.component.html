@@ -1,0 +1,62 @@
+<header>
+    <div class="container" style="margin: 30px auto;overflow: hidden;">
+       <div class="row">
+          <div class="col-md-12 logo">
+             <h1 style="margin:0">
+                <a class="navbar-brand" [routerLink]="['/']">
+                <img title="Trường THPT Khoái Châu" width="120px" height="120px" src="assets/img/icon_cap.png" alt="logo Trường THPT Khoái Châu" style="max-width: 100%">
+                </a>
+             </h1>
+             <h4 style="letter-spacing: 3px;">Cổng thông tin điện tử</h4>
+             <h3 style="text-transform: uppercase;letter-spacing: 5px;margin-top: 15px;"><b>Trường THPT Khoái Châu</b></h3>
+             <h5 style="letter-spacing: 2px;line-height: 20px; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><b>Thị trấn Khoái Châu, Huyện Khoái Châu, Tỉnh Hưng Yên</b></h5>
+          </div>
+       </div>
+    </div>
+    <!--  -->
+    <!-- menu -->
+    <div class="container top">
+       <nav class="navbar navbar-default">
+          <div class="container-fluid">
+             <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+                </button>
+             </div>
+             <div class="collapse navbar-collapse" id="myNavbar" >
+                <ul class="nav navbar-nav navbar-left" >
+                   <li><a [routerLink]="['/']">Trang chủ</a></li>
+                   <li><a [routerLink]="['/gioi-thieu']">Giới thiệu </a></li>
+                   <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown">Cơ cấu tổ chức <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                         <li><a [routerLink]="['/ban-giam-hieu']">Ban giám hiệu</a></li>
+                         <li><a [routerLink]="['/bch-cong-doan']">BCH Công đoàn</a></li>
+                      </ul>
+                   </li>
+                   <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" >Tin tức <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                         <li><a [routerLink]="['/tin-tuc',1]">Tin nhà trường</a></li>
+                         <li><a [routerLink]="['/tin-tuc',2]">Tin sở GD</a></li>
+                         <li><a [routerLink]="['/tin-tuc',3]">Thông báo</a></li>
+                      </ul>
+                   </li>
+                   <li><a [routerLink]="['/blog']">Diễn đàn</a></li>
+                   <li class="dropdown">
+                     <a class="dropdown-toggle" data-toggle="dropdown">Thời khoá biểu <span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li><a [routerLink]="['/thoi-khoa-bieu']">Thời khoá biểu theo lớp</a></li>
+                        <li><a [routerLink]="['/thoi-gian-tiet-hoc']">Thời gian các tiết học tại trường</a></li>
+                     </ul>
+                  </li>
+                   <li><a [routerLink]="['/lien-he']">Liên hệ</a></li>
+                </ul>
+             </div>
+          </div>
+       </nav>
+    </div>
+    <!-- end menu -->	
+ </header>
