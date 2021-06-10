@@ -4,6 +4,7 @@ import { Observable} from 'rxjs';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/takeUntil';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tintuc',
@@ -12,28 +13,26 @@ import { DatePipe } from '@angular/common';
 })
 export class TintucComponent extends BaseComponent implements OnInit {
   public tintucs:any;
-  public listTinTuc: any;
-  public listBaiViet: any;
   public totalRecords: any;
   public pageSize = 4;
   public page = 1;
-  constructor(injector: Injector) { 
+  public maloai = 0;
+  constructor(injector: Injector,private router: Router) { 
     super(injector);
   }
 
   ngOnInit(): void {
+    this._route.params.subscribe(params => {
+      this.maloai = params['id'];
+    });
+    this.router.routeReuseStrategy.shouldReuseRoute=()=> {
+      this.search();
+      return false;
+    }
     this.search();
-    this._api.get('api/tintuc/get-all').takeUntil(this.unsubscribe).subscribe(res => {
-      this.listTinTuc = res;
-      this.listTinTuc.length=4;
-      });
-    this._api.get('api/baiviet/get-all').takeUntil(this.unsubscribe).subscribe(res => {
-      this.listBaiViet = res;
-      this.listBaiViet.length=4;
-      });
   }
   loadPage(page) { 
-    this._api.post('api/tintuc/search',{page: page, pageSize: this.pageSize}).takeUntil(this.unsubscribe).subscribe(res => {
+    this._api.post('api/tintuc/search',{page: page, pageSize: this.pageSize, maloai: this.maloai}).takeUntil(this.unsubscribe).subscribe(res => {
       this.tintucs = res.data;
       this.totalRecords =  res.totalItems;
       this.pageSize = res.pageSize;
@@ -42,7 +41,7 @@ export class TintucComponent extends BaseComponent implements OnInit {
   search() { 
     this.page = 1;
     this.pageSize = 4;
-    this._api.post('api/tintuc/search',{page: this.page, pageSize: this.pageSize}).takeUntil(this.unsubscribe).subscribe(res => {
+    this._api.post('api/tintuc/search',{page: this.page, pageSize: this.pageSize, maloai: this.maloai}).takeUntil(this.unsubscribe).subscribe(res => {
       this.tintucs = res.data;
       console.log(this.tintucs);
       this.totalRecords =  res.totalItems;
@@ -54,10 +53,6 @@ export class TintucComponent extends BaseComponent implements OnInit {
       return text.substr(0, limit) + "...";
     }
     return text;
-  }
-
-  converTime( time : string) {
-
   }
   
 }

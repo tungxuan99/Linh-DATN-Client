@@ -8,7 +8,6 @@ import { Component, OnInit, Injector } from '@angular/core';
 })
 export class CttintucComponent extends BaseComponent implements OnInit {
   item:any;
-  public tintucs:any;
   constructor(injector: Injector) { 
     super(injector);
   }
@@ -25,10 +24,6 @@ export class CttintucComponent extends BaseComponent implements OnInit {
        
       }); 
     });
-    this._api.get('api/tintuc/get-all').takeUntil(this.unsubscribe).subscribe(res => {
-      this.tintucs = res;
-      this.tintucs.length=5;
-      });
   }
   catText(text: string, limit: number): string {
     if(text.length > limit) {

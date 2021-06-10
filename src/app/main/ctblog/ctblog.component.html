@@ -1,4 +1,4 @@
-
+<!-- 
 
   <section class="breadcrumb_area">
       <div class="breadcrumb_top">
@@ -178,7 +178,70 @@
           </form>
        </div>
     </div>
- </div>
+ </div> -->
+
+ <section>
+    <div class="container tin-chinh blog" style="background-color: #fff;">
+       <div class="col-sm-12 col-xs-12 tieu-de-blog">
+          <h2 style="margin-bottom: 0"><a [routerLink]="['/']">Trang chủ</a> / 
+             <a [routerLink]="['/blog']"> Diễn đàn</a> /
+             {{item.tieuDe}}
+          </h2>
+       </div>
+       <div class="col-sm-12 col-xs-12" style="padding:0">
+          <div class="col-sm-9 col-xs-12 bai-viet" style="border-right: 1px solid #eee">
+             <h2 style="margin-top: 0">{{item.tieuDe}}</h2>
+             <p>Posted By :{{item.maTK}}</p>
+            <p>Ngày đăng: {{item.thoiGian| date:'dd-MM-yyyy' }}</p>
+             <hr>
+             <div class="content">
+                <p>{{item.noiDung}}</p>
+             </div>
+             <div class="featured-images text-center">
+                <p>
+                    <img src="assets/img/{{item.hinhAnh}}" alt="{{item.tieuDe}}">
+                </p>
+             </div>
+             <div class="col-sm-12 col-xs-12">
+                <h2>Bình Luận</h2>
+                <ng-container *ngFor="let bl of binhluans">
+                    <ng-container *ngIf="bl.trangThai=='duyệt'">
+                <ul class="coments">
+                    <li>              
+                        <div class="col-md-2 fix_p">
+                            <div class="com_author_photo">
+                                <img src="assets/img/avatar.gif" style="height: 50px;width: 60px;">
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="comment_details">
+                                <h3>{{bl.hoTen}}</h3>
+                              <p>{{bl.noiDung}}</p>
+                              <h4>{{bl.thoiGian| date:'dd-MM-yyyy' }}</h4>
+                                <a href="#" class="reply">Trả lời</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+              </ng-container>
+              </ng-container>
+                <div class="form-group">
+                  <h2>BÌNH LUẬN </h2>
+                  <form [formGroup]="formbinhluan" (ngSubmit)="ThemBinhLuan()" class="form-horizontal">
+                      <div class="row">
+                          <div class="col-md-12">
+                              <textarea formControlName="binhluan" cols="30" rows="10" placeholder="Message"></textarea>
+                              <button class="btn btn-success">Gửi bình luận</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+            </div>
+          </div>
+          <app-newfet></app-newfet>
+        </div>  
+    </div>
+</section>
 
 
 

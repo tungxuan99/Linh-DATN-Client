@@ -15,7 +15,8 @@ import 'rxjs/add/operator/takeUntil';
 export class CtTkbComponent extends BaseComponent implements OnInit {
   @ViewChild('couponPage') couponPage: ElementRef; 
   public list_tkb:any;
-  public tiets=['1', '2', '3', '4', '5']
+  public tiets=['1', '2', '3', '4', '5'];
+  public lop: any;
   constructor(injector: Injector) { 
     super(injector);
   }
@@ -23,6 +24,7 @@ export class CtTkbComponent extends BaseComponent implements OnInit {
     this.list_tkb = {};
     this._route.params.subscribe(params => {
       let id = params['id'];
+      this.lop=id;
       this._api.get('api/tkb/get-by-lop/'+id).takeUntil(this.unsubscribe).subscribe(res => {
         this.list_tkb = res;
         setTimeout(() => {

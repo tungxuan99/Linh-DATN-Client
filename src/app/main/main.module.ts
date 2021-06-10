@@ -17,7 +17,12 @@ import { CtTkbComponent } from './ct-tkb/ct-tkb.component';
 import { LoginComponent } from './login/login.component';
 import { DangkyComponent } from './dangky/dangky.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap' ;
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ThoigianhocComponent } from './thoigianhoc/thoigianhoc.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { NewfetComponent } from './layout/newfet/newfet.component';
+import { BangiamhieuComponent } from './cocautochuc/bangiamhieu/bangiamhieu.component';
+import { CongdoanComponent } from './cocautochuc/congdoan/congdoan.component' ;
 
 export const mainRoutes: Routes = [
   {
@@ -30,7 +35,13 @@ export const mainRoutes: Routes = [
             path: 'gioi-thieu', component: GioithieuComponent
         },
         {
-          path: 'tin-tuc', component: TintucComponent
+          path: 'ban-giam-hieu', component: BangiamhieuComponent
+        },
+        {
+          path: 'bch-cong-doan', component: CongdoanComponent
+        },
+        {
+          path: 'tin-tuc/:id', component: TintucComponent
         },
         {
           path: 'blog', component: BlogComponent
@@ -51,6 +62,9 @@ export const mainRoutes: Routes = [
           path: 'chi-tiet-thoi-khoa-bieu/:id', component: CtTkbComponent 
         },
         {
+          path: 'thoi-gian-tiet-hoc', component: ThoigianhocComponent 
+        },
+        {
           path: 'lien-he', component: TochucComponent
         },
         {
@@ -59,12 +73,33 @@ export const mainRoutes: Routes = [
         {
           path: 'dang-ky', component: DangkyComponent 
         },
+        {
+          path: '**', component: PagenotfoundComponent 
+        },
       ]
   }
 ];
 
 @NgModule({
-  declarations: [MainComponent, HomeComponent, HeaderComponent, FooterComponent, GioithieuComponent, TintucComponent, BlogComponent, CtblogComponent, CttintucComponent, VanBanComponent, TochucComponent, TkbComponent, CtTkbComponent, LoginComponent, DangkyComponent],
+  declarations: [
+    MainComponent, 
+    HomeComponent, 
+    HeaderComponent, 
+    FooterComponent, 
+    GioithieuComponent, 
+    TintucComponent, 
+    BlogComponent, 
+    CtblogComponent, 
+    CttintucComponent, 
+    VanBanComponent, 
+    TochucComponent, 
+    TkbComponent, 
+    CtTkbComponent, 
+    LoginComponent, 
+    DangkyComponent, 
+    ThoigianhocComponent, 
+    PagenotfoundComponent, 
+    NewfetComponent, BangiamhieuComponent, CongdoanComponent],
   imports: [
     CommonModule,
     FormsModule,

@@ -30,26 +30,28 @@
                    <li><a [routerLink]="['/']">Trang chủ</a></li>
                    <li><a [routerLink]="['/gioi-thieu']">Giới thiệu </a></li>
                    <li class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown"  href="co-cau-to-chuc.html">Cơ cấu tổ chức <span class="caret"></span></a>
+                      <a class="dropdown-toggle" data-toggle="dropdown">Cơ cấu tổ chức <span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                         <li><a href="post/ban-giam-hieu.html">Ban giám hiệu</a></li>
-                         <li><a href="post/bch-cong-doan.html">BCH Công đoàn</a></li>
-                         <li><a href="post/to-chuyen-mon.html">Tổ chuyên môn</a></li>
-                         <li><a href="post/bch-doan-truong.html">BCH Đoàn trường</a></li>
+                         <li><a [routerLink]="['/ban-giam-hieu']">Ban giám hiệu</a></li>
+                         <li><a [routerLink]="['/bch-cong-doan']">BCH Công đoàn</a></li>
                       </ul>
                    </li>
                    <li class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown"  [routerLink]="['/tin-tuc']">Tin tức <span class="caret"></span></a>
+                      <a class="dropdown-toggle" data-toggle="dropdown" >Tin tức <span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                         <li><a href="tin-giao-duc.html">Công văn</a></li>
-                         <li><a href="tin-nha-truong.html">Tin nhà trường</a></li>
-                         <li><a href="doan-thanh-nien.html">Tin Đoàn TN</a></li>
-                         <li><a href="tai-lieu.html">Tài liệu</a></li>
+                         <li><a [routerLink]="['/tin-tuc',1]">Tin nhà trường</a></li>
+                         <li><a [routerLink]="['/tin-tuc',2]">Tin sở GD</a></li>
+                         <li><a [routerLink]="['/tin-tuc',3]">Thông báo</a></li>
                       </ul>
                    </li>
-                   <li><a [routerLink]="['/thong-bao']">Thông báo</a></li>
-                   <li><a href="lich-cong-tac.html">Lịch công tác</a></li>
-                   <li><a [routerLink]="['/thoi-khoa-bieu']" >Thời khóa biểu</a></li>
+                   <li><a [routerLink]="['/blog']">Diễn đàn</a></li>
+                   <li class="dropdown">
+                     <a class="dropdown-toggle" data-toggle="dropdown">Thời khoá biểu <span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li><a [routerLink]="['/thoi-khoa-bieu']">Thời khoá biểu theo lớp</a></li>
+                        <li><a [routerLink]="['/thoi-gian-tiet-hoc']">Thời gian các tiết học tại trường</a></li>
+                     </ul>
+                  </li>
                    <li><a [routerLink]="['/lien-he']">Liên hệ</a></li>
                 </ul>
              </div>
