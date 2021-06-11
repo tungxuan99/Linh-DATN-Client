@@ -24,16 +24,13 @@ export class CtblogComponent extends BaseComponent implements OnInit {
   public formbinhluan:any;
   public binhluans: any;
   public list_blog:any;
+  public doneSetupForm: any;  
+  submitted = false;
   constructor(injector: Injector,private formBuilder: FormBuilder,) { 
     super(injector);
   }
 
   ngOnInit(): void {
-    this.formdata = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      remember: [''],
-    });
     this.formbinhluan = this.formBuilder.group({
       binhluan: ['', Validators.required],
     });
@@ -64,14 +61,21 @@ export class CtblogComponent extends BaseComponent implements OnInit {
   }
   get f() { return this.formdata.controls; }
   createModal(){
-    $("#createUserModal").modal("show");
-    this.formdata = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      remember: [''],
+    setTimeout(() => {
+      $('#createUserModal').modal('toggle');
+      this.formdata = this.formBuilder.group({
+        username: ['', Validators.required],
+        password: ['', Validators.required],
+        remember: [''],
+      });
+      this.doneSetupForm = true;
     });
   }
   onSubmit(value){
+    this.submitted = true;
+    if (this.formdata.invalid) {
+      return;
+    } 
     let tmp={
       Username: value.username,
       Password: value.password

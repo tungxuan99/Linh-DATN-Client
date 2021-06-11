@@ -21,14 +21,6 @@ export class BlogComponent extends BaseComponent implements OnInit {
     super(injector);
   }
   ngOnInit(): void {
-    // Observable.combineLatest(
-    //   this._api.get('api/baiviet/get-all'),
-    // ).takeUntil(this.unsubscribe).subscribe(res => {
-    //   this.list_blog = res[0];
-    //   setTimeout(() => {
-    //     this.loadScripts();
-    //   });
-    // }, err => { });
     this.search();
   }
   loadPage(page) { 
