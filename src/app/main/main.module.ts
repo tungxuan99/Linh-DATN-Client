@@ -22,7 +22,8 @@ import { ThoigianhocComponent } from './thoigianhoc/thoigianhoc.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { NewfetComponent } from './layout/newfet/newfet.component';
 import { BangiamhieuComponent } from './cocautochuc/bangiamhieu/bangiamhieu.component';
-import { CongdoanComponent } from './cocautochuc/congdoan/congdoan.component' ;
+import { CongdoanComponent } from './cocautochuc/congdoan/congdoan.component';
+import { QuanlybaivietComponent } from './quanlybaiviet/quanlybaiviet.component' ;
 
 export const mainRoutes: Routes = [
   {
@@ -74,6 +75,9 @@ export const mainRoutes: Routes = [
           path: 'dang-ky', component: DangkyComponent 
         },
         {
+          path: 'quan-ly-blog', component: QuanlybaivietComponent 
+        },
+        {
           path: '**', component: PagenotfoundComponent 
         },
       ]
@@ -99,7 +103,7 @@ export const mainRoutes: Routes = [
     DangkyComponent, 
     ThoigianhocComponent, 
     PagenotfoundComponent, 
-    NewfetComponent, BangiamhieuComponent, CongdoanComponent],
+    NewfetComponent, BangiamhieuComponent, CongdoanComponent, QuanlybaivietComponent],
   imports: [
     CommonModule,
     FormsModule,
