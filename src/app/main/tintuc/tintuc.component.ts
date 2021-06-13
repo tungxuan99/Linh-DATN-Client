@@ -16,7 +16,7 @@ export class TintucComponent extends BaseComponent implements OnInit {
   public totalRecords: any;
   public pageSize = 4;
   public page = 1;
-  public maloai = 0;
+  public maloai :any;
   constructor(injector: Injector,private router: Router) { 
     super(injector);
   }

@@ -23,7 +23,8 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { NewfetComponent } from './layout/newfet/newfet.component';
 import { BangiamhieuComponent } from './cocautochuc/bangiamhieu/bangiamhieu.component';
 import { CongdoanComponent } from './cocautochuc/congdoan/congdoan.component';
-import { QuanlybaivietComponent } from './quanlybaiviet/quanlybaiviet.component' ;
+import { QuanlybaivietComponent } from './quanlybaiviet/quanlybaiviet.component';
+import { SildeHeaderComponent } from './layout/silde-header/silde-header.component' ;
 
 export const mainRoutes: Routes = [
   {
@@ -103,7 +104,7 @@ export const mainRoutes: Routes = [
     DangkyComponent, 
     ThoigianhocComponent, 
     PagenotfoundComponent, 
-    NewfetComponent, BangiamhieuComponent, CongdoanComponent, QuanlybaivietComponent],
+    NewfetComponent, BangiamhieuComponent, CongdoanComponent, QuanlybaivietComponent, SildeHeaderComponent],
   imports: [
     CommonModule,
     FormsModule,
