@@ -14,30 +14,22 @@ import KeenSlider from 'keen-slider';
     './home.component.css']
 })
 export class HomeComponent extends BaseComponent implements OnInit {
-  list_lop:any;
-  public tintucs:any;
+  thongbaos:any;
+  dstintuc:any;
+  chiases: any;
   constructor(injector: Injector) { 
     super(injector);}
 
   ngOnInit(): void {
-    Observable.combineLatest(
-      this._api.get('api/tintuc/get-top3'),
-    ).takeUntil(this.unsubscribe).subscribe(res => {
-      this.list_lop = res[0];
-      setTimeout(() => {
-        this.loadScripts();
-      });
-    }, err => { });
-    Observable.combineLatest(
-      this._api.get('api/tintuc/get-all'),
-    ).takeUntil(this.unsubscribe).subscribe(res => {
-      this.tintucs = res[0];
-      setTimeout(() => {
-        this.loadScripts();
-      });
-    }, err => { });
-    console.log(this.tintucs);
-    console.log(this.list_lop);
+    this._api.post('api/tintuc/search',{page: 1, pageSize: 4, maloai: 2}).takeUntil(this.unsubscribe).subscribe(res => {
+      this.thongbaos = res.data;
+    });
+    this._api.post('api/tintuc/search',{page: 1, pageSize: 7}).takeUntil(this.unsubscribe).subscribe(res => {
+      this.dstintuc = res.data;
+    });
+    this._api.post('api/baiviet/search',{page: 1, pageSize: 2}).takeUntil(this.unsubscribe).subscribe(res => {
+      this.chiases = res.data
+    });
   }
 
   catText(text: string, limit: number): string {

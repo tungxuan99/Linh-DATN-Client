@@ -46,6 +46,9 @@ export const mainRoutes: Routes = [
           path: 'tin-tuc/:id', component: TintucComponent
         },
         {
+          path: 'tin-tuc?search=:string', component: TintucComponent
+        },
+        {
           path: 'blog', component: BlogComponent
         },
         {

@@ -26,6 +26,7 @@ export class TintucComponent extends BaseComponent implements OnInit {
       this.maloai = params['id'];
     });
     this.router.routeReuseStrategy.shouldReuseRoute=()=> {
+      console.log('ok');
       this.search();
       return false;
     }
@@ -41,9 +42,9 @@ export class TintucComponent extends BaseComponent implements OnInit {
   search() { 
     this.page = 1;
     this.pageSize = 4;
+    console.log(this.maloai);
     this._api.post('api/tintuc/search',{page: this.page, pageSize: this.pageSize, maloai: this.maloai}).takeUntil(this.unsubscribe).subscribe(res => {
       this.tintucs = res.data;
-      console.log(this.tintucs);
       this.totalRecords =  res.totalItems;
       this.pageSize = res.pageSize;
       });
