@@ -1,8 +1,8 @@
 <div class="col-sm-3 col-xs-12 right-post">
     <div class="col-sm-12 col-xs-12" style="padding:0">
-       <form id="J_searchForm" class="search-form clearfix" action="https://c3vietduc.edu.vn/search">
+       <form [formGroup]="formdata"  (ngSubmit)="onSubmit(formdata.value)">
           <div class="input-group">
-             <input type="text" class="form-control" placeholder="Tìm kiếm..." name="search">
+             <input type="text" class="form-control" placeholder="Tìm kiếm..." formControlName="search">
              <div class="input-group-btn">
                 <button class="btn btn-default" type="submit">
                 <i class="fa fa-search"></i>

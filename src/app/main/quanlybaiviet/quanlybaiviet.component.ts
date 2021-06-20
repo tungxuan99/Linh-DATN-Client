@@ -68,11 +68,13 @@ export class QuanlybaivietComponent extends BaseComponent implements OnInit {
       console.log(value);
       var date = new Date();
       let ngay =this.datePipe.transform(date,"yyyy-MM-dd");
+      this.getEncodeFromImage(this.file_image).subscribe((data: any): void => {
+        let data_image = data == '' ? null : data;
         let tmp = {
           TieuDe:value.tieude,
           HinhAnh:value.hinhanh,
           ThoiGian:ngay,
-          TrangThai:value.trangthai,
+          TrangThai:"chờ",
           NoiDung:value.noidung,
           MaTK: this.user.maTK        
           };
@@ -81,6 +83,7 @@ export class QuanlybaivietComponent extends BaseComponent implements OnInit {
           this.search();
           this.closeModal();
           });
+        });
    
   } 
 
@@ -96,10 +99,10 @@ export class QuanlybaivietComponent extends BaseComponent implements OnInit {
     this.baiviet = null;
     this.formBaiViet = this.fb.group({
         'tieude': ['', Validators.required],
-        'hinhanh': ['',Validators.required],
         'thoigian': ['', Validators.required],
         'trangthai': ['', Validators.required],
         'noidung': ['', Validators.required],
+        'hinhanh': [''],
     }); 
   }
 
@@ -111,30 +114,12 @@ export class QuanlybaivietComponent extends BaseComponent implements OnInit {
       $("#createBaiVietModal").modal("show");
       this.formBaiViet = this.fb.group({
         'tieude': ['', Validators.required],
-        'hinhanh': ['',Validators.required],
         'trangthai': ['', Validators.required],
         'noidung': ['', Validators.required],
+        'hinhanh': [''],
       });
       this.doneSetupFormBaiViet = true;
     });
-  }
-
-  public openUpdateModal(row) {
-    this.doneSetupFormBaiViet = false;
-    this.showUpdateModalBaiViet = true; 
-    setTimeout(() => {
-      $('#createBaiVietModal').modal('toggle');
-      this._api.get('/api/baiviet/get-by-id/'+ row.maBaiViet).takeUntil(this.unsubscribe).subscribe((res:any) => {
-        this.baiviet = res; 
-        this.formBaiViet = this.fb.group({
-          'tieude': [this.baiviet.tieuDe, Validators.required],
-          'hinhanh': [this.baiviet.hinhAnh,Validators.required],
-          'trangthai': [this.baiviet.trangThai, Validators.required],
-          'noidung': [this.baiviet.noiDung, Validators.required],
-        });  
-          this.doneSetupFormBaiViet = true;
-        }); 
-    }, 700);
   }
 
   closeModal() {
