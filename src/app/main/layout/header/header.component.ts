@@ -1,6 +1,7 @@
 import { BaseComponent } from 'src/app/lib/base.component';
 import { Component, OnInit, Injector } from '@angular/core';
 import { BehaviorSubject, Observable} from 'rxjs';
+import Swal from 'sweetalert2/dist/sweetalert2.js';  
 import {
   FormGroup,
   FormControl,
@@ -60,7 +61,11 @@ export class HeaderComponent extends BaseComponent implements OnInit {
       $("#createUserModal").modal("hide");
       this.user=user;
       this.isChecked = false;
-      alert("Đăng nhập thành công!");
+      Swal.fire(
+        'Thành công!',
+        'Đăng nhập thành công!',
+        'success'
+      );
     },(error) => {
       this.isChecked = true;
     }
