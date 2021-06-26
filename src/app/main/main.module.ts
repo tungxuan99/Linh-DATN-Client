@@ -24,7 +24,8 @@ import { NewfetComponent } from './layout/newfet/newfet.component';
 import { BangiamhieuComponent } from './cocautochuc/bangiamhieu/bangiamhieu.component';
 import { CongdoanComponent } from './cocautochuc/congdoan/congdoan.component';
 import { QuanlybaivietComponent } from './quanlybaiviet/quanlybaiviet.component';
-import { SildeHeaderComponent } from './layout/silde-header/silde-header.component' ;
+import { SildeHeaderComponent } from './layout/silde-header/silde-header.component';
+import { SearchComponent } from './search/search.component' ;
 
 export const mainRoutes: Routes = [
   {
@@ -46,7 +47,7 @@ export const mainRoutes: Routes = [
           path: 'tin-tuc/:id', component: TintucComponent
         },
         {
-          path: 'tin-tuc?search=:string', component: TintucComponent
+          path: 'tin-tuc-search', component: SearchComponent
         },
         {
           path: 'blog', component: BlogComponent
@@ -107,7 +108,7 @@ export const mainRoutes: Routes = [
     DangkyComponent, 
     ThoigianhocComponent, 
     PagenotfoundComponent, 
-    NewfetComponent, BangiamhieuComponent, CongdoanComponent, QuanlybaivietComponent, SildeHeaderComponent],
+    NewfetComponent, BangiamhieuComponent, CongdoanComponent, QuanlybaivietComponent, SildeHeaderComponent, SearchComponent],
   imports: [
     CommonModule,
     FormsModule,

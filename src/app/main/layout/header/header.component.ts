@@ -22,6 +22,7 @@ export class HeaderComponent extends BaseComponent implements OnInit {
   public formdata:FormGroup;
   public doneSetupForm: any;  
   submitted = false;
+  isChecked = false;
   constructor(injector: Injector,private formBuilder: FormBuilder,) { 
     super(injector);
   }
@@ -40,6 +41,7 @@ export class HeaderComponent extends BaseComponent implements OnInit {
         remember: [''],
       });
       this.doneSetupForm = true;
+      this.submitted = false;
     });
   }
   onSubmit(value){
@@ -51,15 +53,16 @@ export class HeaderComponent extends BaseComponent implements OnInit {
       Username: value.username,
       Password: value.password
     };
-    this._api.post('api/taikhoan/authenticate',tmp).pipe()
+    this._api.post('api/taikhoan/authenticate',tmp).takeUntil(this.unsubscribe)
     .subscribe(user => {
+      
       localStorage.setItem('user', JSON.stringify(user));
       $("#createUserModal").modal("hide");
       this.user=user;
+      this.isChecked = false;
       alert("Đăng nhập thành công!");
-    },
-    (error) => {
-      this.error = error;
+    },(error) => {
+      this.isChecked = true;
     }
     );
   }

@@ -51,7 +51,7 @@ export class ApiService {
       );
   }
   public handleError(error: any) {
-    this.router.navigate(['/err']);
+    // this.router.navigate(['/err']);
     return observableThrowError(error);
   }
 }

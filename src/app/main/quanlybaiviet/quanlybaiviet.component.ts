@@ -68,11 +68,12 @@ export class QuanlybaivietComponent extends BaseComponent implements OnInit {
       console.log(value);
       var date = new Date();
       let ngay =this.datePipe.transform(date,"yyyy-MM-dd");
+      let anhtmp = value.hinhanh.split('\\');
       this.getEncodeFromImage(this.file_image).subscribe((data: any): void => {
         let data_image = data == '' ? null : data;
         let tmp = {
           TieuDe:value.tieude,
-          HinhAnh:value.hinhanh,
+          HinhAnh:anhtmp[anhtmp.length -1],
           ThoiGian:ngay,
           TrangThai:"chờ",
           NoiDung:value.noidung,

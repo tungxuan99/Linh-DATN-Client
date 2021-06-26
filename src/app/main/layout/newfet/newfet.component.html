@@ -9,6 +9,10 @@
                 </button>
              </div>
           </div>
+          <div *ngIf=" submitted && f.search.errors" class="input-group" style="color: red;">
+            <div class="col-sm-3"></div>
+            <div *ngIf="f.search.errors.required" class="col-sm-8">Chưa nhập dữ liệu!</div>
+        </div>
        </form>
     </div>
     <div class="col-sm-12 col-xs-12 new-fet" style="padding:0">
