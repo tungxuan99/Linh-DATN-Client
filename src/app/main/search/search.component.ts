@@ -1,40 +1,35 @@
 import { BaseComponent } from 'src/app/lib/base.component';
-import { Component, OnInit ,Injector } from '@angular/core';
+import { Component, OnInit ,Injector} from '@angular/core';
 import { Observable} from 'rxjs';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/takeUntil';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { NewfetComponent } from '../layout/newfet/newfet.component';
+import { FormBuilder, Validators} from '@angular/forms';
+declare var $:any;
 
 @Component({
-  selector: 'app-tintuc',
-  templateUrl: './tintuc.component.html',
-  styleUrls: ['./tintuc.component.css']
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.css']
 })
-export class TintucComponent extends BaseComponent implements OnInit {
+export class SearchComponent extends BaseComponent implements OnInit{
   public tintucs:any;
   public totalRecords: any;
   public pageSize = 4;
   public page = 1;
-  public maloai :any;
+  public tieude: any;
 
-  constructor(injector: Injector,private router: Router) { 
+  constructor(private fb: FormBuilder, injector: Injector,private datePipe: DatePipe) {
     super(injector);
   }
-
   ngOnInit(): void {
-    this._route.params.subscribe(params => {
-      this.maloai = params['id'];
-    });
-    this.router.routeReuseStrategy.shouldReuseRoute=()=> {
-      this.search();
-      return false;
-    }
+    this.tieude = localStorage.getItem('search');
     this.search();
   }
   loadPage(page) { 
-    this._api.post('api/tintuc/search',{page: page, pageSize: this.pageSize, maloai: this.maloai}).takeUntil(this.unsubscribe).subscribe(res => {
+    this._api.post('api/tintuc/search',{page: page, pageSize: this.pageSize, tieude: this.tieude}).takeUntil(this.unsubscribe).subscribe(res => {
       this.tintucs = res.data;
       this.totalRecords =  res.totalItems;
       this.pageSize = res.pageSize;
@@ -43,7 +38,7 @@ export class TintucComponent extends BaseComponent implements OnInit {
   search() { 
     this.page = 1;
     this.pageSize = 4;
-    this._api.post('api/tintuc/search',{page: this.page, pageSize: this.pageSize, maloai: this.maloai}).takeUntil(this.unsubscribe).subscribe(res => {
+    this._api.post('api/tintuc/search',{page: this.page, pageSize: this.pageSize, tieude: this.tieude}).takeUntil(this.unsubscribe).subscribe(res => {
       this.tintucs = res.data;
       this.totalRecords =  res.totalItems;
       this.pageSize = res.pageSize;

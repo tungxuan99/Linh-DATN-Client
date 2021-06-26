@@ -6,6 +6,7 @@ import { FormBuilder, Validators} from '@angular/forms';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/takeUntil';
 import { DatePipe } from '@angular/common';
+import Swal from 'sweetalert2/dist/sweetalert2.js';  
 declare var $:any;
 
 @Component({
@@ -68,18 +69,23 @@ export class QuanlybaivietComponent extends BaseComponent implements OnInit {
       console.log(value);
       var date = new Date();
       let ngay =this.datePipe.transform(date,"yyyy-MM-dd");
+      let anhtmp = value.hinhanh.split('\\');
       this.getEncodeFromImage(this.file_image).subscribe((data: any): void => {
         let data_image = data == '' ? null : data;
         let tmp = {
           TieuDe:value.tieude,
-          HinhAnh:value.hinhanh,
+          HinhAnh:anhtmp[anhtmp.length -1],
           ThoiGian:ngay,
           TrangThai:"chờ",
           NoiDung:value.noidung,
           MaTK: this.user.maTK        
           };
         this._api.post('api/baiviet/create-baiviet',tmp).takeUntil(this.unsubscribe).subscribe(res => {
-          alert('Thêm thành công');
+          Swal.fire(
+            'Thành công!',
+            'Đã thêm thành công!',
+            'success'
+          );
           this.search();
           this.closeModal();
           });
@@ -88,11 +94,29 @@ export class QuanlybaivietComponent extends BaseComponent implements OnInit {
   } 
 
   onDelete(row) { 
-    console.log(row.maBaiViet);
-    this._api.post('api/baiviet/delete-baiviet',{maBaiViet:row.maBaiViet}).takeUntil(this.unsubscribe).subscribe(res => {
-      alert('Xóa thành công');
-      this.search(); 
-      });
+    Swal.fire({
+      title: 'Bạn có chắc muốn xoá?',
+      text: 'Bạn sẽ không thể khôi phục bản ghi này!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Có',
+      cancelButtonText: 'Không'
+    }).then((result) => {
+      if (result.value) {
+        this._api.post('api/baiviet/delete-baiviet',{maBaiViet:row.maBaiViet}).takeUntil(this.unsubscribe).subscribe(res => {
+          this.search(); 
+          });
+        Swal.fire(
+          'Đã xoá!',
+          'Bản ghi không thể khôi phục',
+          'success'
+        )
+      }
+    })
+    // this._api.post('api/baiviet/delete-baiviet',{maBaiViet:row.maBaiViet}).takeUntil(this.unsubscribe).subscribe(res => {
+    //   alert('Xóa thành công');
+    //   this.search(); 
+    //   });
   }
 
   Reset() {  

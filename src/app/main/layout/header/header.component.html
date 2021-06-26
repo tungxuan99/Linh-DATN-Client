@@ -89,7 +89,7 @@
                            <input type="text" formControlName="username" placeholder="Tên tài khoản" class="form-control">
                        </div>
                    </div>
-                   <div *ngIf=" submitted && f.username.errors" class="row invalid-feedback" style="margin-top: 0;">
+                   <div *ngIf=" submitted && f.username.errors" class="row invalid-feedback" style="margin-top: 0; color: red;">
                        <div class="col-sm-3"></div>
                        <div *ngIf="f.username.errors.required" class="col-sm-8">Chưa nhập tài khoản!</div>
                    </div>
@@ -99,10 +99,14 @@
                            <input type="password" formControlName="password" placeholder="Mật khẩu" class="form-control">
                        </div>
                    </div>
-                   <div *ngIf="submitted && f.password.errors" class="row invalid-feedback">
+                   <div *ngIf="submitted && f.password.errors" class="row invalid-feedback"  style="color: red;">
                        <div class="col-sm-3"></div>
                        <div *ngIf="f.password.errors.required" class="col-sm-9">Chưa nhập mật khẩu!</div>
                    </div>
+                   <div *ngIf="submitted && isChecked" class="row invalid-feedback" style="color: red;">
+                     <div class="col-sm-3"></div>
+                     <div *ngIf="isChecked" class="col-sm-9">Tài khoản hoặc mật khẩu không đúng!</div>
+                 </div>
                    <div class="row form-group">
                        <div class="clearfix">
                            <div class="col-sm-6" style="margin-left: 16%;">
